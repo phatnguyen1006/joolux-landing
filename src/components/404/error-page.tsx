@@ -1,0 +1,31 @@
+import { IoHomeSharp } from "react-icons/io5";
+import Link from "@components/ui/link";
+import { useTranslation } from "next-i18next";
+
+const ErrorPageComponent: React.FC = () => {
+    const { t } = useTranslation("common");
+    return (
+        <div className="border-b border-gray-300 text-center px-16 py-16 sm:py-20 flex items-center justify-center">
+            <div>
+                <div className="text-center sm:pb-24">
+                    <div className="not-found-page-wrapper smJl:text-[280px]">
+                        404
+                        <div className="not-found-page-text smJl:text-2xl">
+                            thông tin bạn đang tìm kiếm hiện không tồn tại
+                        </div>
+                    </div>
+                </div>
+
+                <Link
+                    href="/"
+                    className="text-[13px] md:text-sm lg:text-base leading-4 inline-flex items-center cursor-pointer transition ease-in-out duration-300 bg-heading text-white px-4 md:px-6  py-2.5 lg:py-3 hover:text-white hover:bg-gray-600 hover:shadow-cart"
+                >
+                    <IoHomeSharp />
+                    <span className="ps-1.5">{t("button-go-home")}</span>
+                </Link>
+            </div>
+        </div>
+    );
+};
+
+export default ErrorPageComponent;

@@ -1,0 +1,37 @@
+- hosts: server-fe
+  connection: local
+  become: yes
+  tasks:
+
+    - name: APT update
+      apt:
+        update_cache: yes
+
+    - name: Install require packages
+      apt:
+        pkg:
+        - apt-transport-https
+        - ca-certificates
+        - gnupg-agent
+        - curl
+        - npm
+        - software-properties-common
+        
+    - name: APT update
+      apt:
+        update_cache: yes
+
+    - name: Install server, let's encrypt
+      apt:
+        update_cache: yes
+        pkg:
+        - nginx
+        - letsencrypt
+
+    - name: After installing nginx!
+      shell: ufw allow 'Nginx Full'
+
+    - name: Start service nginx, if not started
+      service:
+        name: nginx
+        state: started
